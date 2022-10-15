@@ -6,11 +6,13 @@ import { useSortBy, useTable } from 'react-table';
 import style from './Companies.module.css';
 
 function Companies() {
-	const { isLoading, isError, data, error } = useQuery('getCompanies', async () => {
-
-		const response = await axios.get('http://localhost:8080/companies');
-		return response.data;
-	});
+	const { isLoading, isError, data, error } = useQuery(
+		'getCompanies',
+		async () => {
+			const response = await axios.get('http://localhost:8080/companies');
+			return response.data;
+		}
+	);
 
 	const memoData = useMemo(() => (data ? data.companies : []), [data]);
 
@@ -31,8 +33,6 @@ function Companies() {
 		],
 		[]
 	);
-
-	console.log(data);
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
 		useTable({ columns, data: memoData }, useSortBy);

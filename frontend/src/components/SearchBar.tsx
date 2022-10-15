@@ -46,9 +46,7 @@ function SearchBar() {
 		},
 		{
 			onSuccess: newData => {
-				console.log({ newData });
 				queryClient.setQueryData('getCompanies', oldData => {
-					console.log({ oldData });
 
 					const updateData = {
 						companies: [
@@ -67,7 +65,6 @@ function SearchBar() {
 	);
 
 	const handelAdd = () => {
-		console.log('button clicked', selectedData);
 		mutation.mutate(selectedData);
 		if (mutation.isError) return;
 
@@ -81,7 +78,6 @@ function SearchBar() {
 		axios
 			.get(`http://localhost:8080/query?q=${q}`)
 			.then(response => {
-				console.log(response.data);
 				return response.data;
 			})
 			.then(cData => {
