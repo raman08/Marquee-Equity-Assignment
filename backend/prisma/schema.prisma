@@ -15,6 +15,6 @@ model company {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  cin       String @unique
+  cin       String   @unique
   name      String
 }

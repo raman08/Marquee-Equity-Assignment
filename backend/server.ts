@@ -43,8 +43,6 @@ app.get('/query', async (req, res) => {
 			};
 		});
 
-		console.log(company);
-
 		return res.json({
 			body: company,
 		});
@@ -77,7 +75,7 @@ app.post('/save', async (req, res) => {
 	}
 });
 
-app.get('/companies', async (req, res) => {
+app.get('/companies', async (_req, res) => {
 	try {
 		const result = await prisma.company.findMany({
 			select: {
