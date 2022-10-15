@@ -1,35 +1,13 @@
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { useSortBy, useTable } from 'react-table';
 
 import style from './Companies.module.css';
 
-type Company = {
-	name: string;
-	cin: string;
-	id: number;
-};
-
 function Companies() {
-	// const [tableData, setTableData] = useState<Post[]>([]);
-	const [tableData, setTableData] = useState([]);
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const response = await fetch(
-	// 			'https://jsonplaceholder.typicode.com/posts'
-	// 		);
-	// 		const data = await response.json();
-	//
-	// 		console.log(data);
-	// 		setTableData(data);
-	// 	};
-	//
-	// 	fetchData().catch(err => console.log(err));
-	// }, []);
-
 	const { isLoading, isError, data, error } = useQuery('getCompanies', async () => {
+
 		const response = await axios.get('http://localhost:8080/companies');
 		return response.data;
 	});
